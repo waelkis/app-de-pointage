@@ -1,13 +1,13 @@
 
-<div class="back d-flex flex-column min-vh-100">
+<div class="back d-flex flex-column">
   <div class="container">
     <div class="row">
-      <button class="col-md-2 btn btn-success btn-sm p-3 mt-5">
+      <a class="col-2" type="button">
         <label for="search" class="fs-6"
           ><i class="fa fa-search" aria-hidden="true"></i>
         </label>
-      </button>
-      <div class="col-md-4 mt-5">
+      </a>
+      <div class="col-8">
         <input
           type="text"
           name="search"
@@ -16,29 +16,24 @@
           [(ngModel)]="searchCat"
           placeholder="Entrer le nom du projet"
         />
-      </div>
-
-      <div class="row mt-5">
-        <div
-          class="text-decoration-underline fs-5"
-          *ngIf="storage.getUser().roles == 'ROLE_ADMIN'"
-        >
-          <li>
-            <span class="text-decoration-underline fs-5"
+        <span class="text-decoration-underline fs-5"
               >Voulez vous ajouter un projet? Cliquer içi ! :</span
             >
-            <button
-              type="button"
-              (click)="onCreate()"
-              class="btn btn-primary ms-3 pt-3 pb-3 pe-3 ps-3"
-            >
-              Ajouter <i class="fa fa-plus ms-2"></i>
-            </button>
-          </li>
-        </div>
       </div>
+      <div class="col-2"  *ngIf="storage.getUser().roles == 'ROLE_ADMIN'">
+
+        <button
+          type="button"
+          (click)="onCreate()"
+          class="btn btn-primary ms-3 pt-3 pb-3 pe-3 ps-3"
+        >
+          Ajouter <i class="fa fa-plus ms-2"></i>
+        </button>
+      </div>
+
+
       <div
-        class="card me-4 mt-4 mb-5 shadow bg-body rounded"
+        class="card me-4 mt-4 mb-5 shadow bg-body rounded m-1"
         style="width: 19rem"
         *ngFor="let c of listproject | listProjectPipe: searchCat"
       >
@@ -70,7 +65,7 @@
               class="btn btn-info btn-sm p-3"
               (click)="onDetail(c)"
             >
-              <i class="fa fa-pen m-2"></i>
+            <i class="fa fa-pen" aria-hidden="true"></i>
             </button>
           </div>
         </div>
