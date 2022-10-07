@@ -1,0 +1,80 @@
+
+<div class="back d-flex flex-column min-vh-100">
+  <div class="container">
+    <div class="row">
+      <button class="col-md-2 btn btn-success btn-sm p-3 mt-5">
+        <label for="search" class="fs-6"
+          ><i class="fa fa-search" aria-hidden="true"></i>
+        </label>
+      </button>
+      <div class="col-md-4 mt-5">
+        <input
+          type="text"
+          name="search"
+          id="search"
+          class="form-control p-3"
+          [(ngModel)]="searchCat"
+          placeholder="Entrer le nom du projet"
+        />
+      </div>
+
+      <div class="row mt-5">
+        <div
+          class="text-decoration-underline fs-5"
+          *ngIf="storage.getUser().roles == 'ROLE_ADMIN'"
+        >
+          <li>
+            <span class="text-decoration-underline fs-5"
+              >Voulez vous ajouter un projet? Cliquer içi ! :</span
+            >
+            <button
+              type="button"
+              (click)="onCreate()"
+              class="btn btn-primary ms-3 pt-3 pb-3 pe-3 ps-3"
+            >
+              Ajouter <i class="fa fa-plus ms-2"></i>
+            </button>
+          </li>
+        </div>
+      </div>
+      <div
+        class="card me-4 mt-4 mb-5 shadow bg-body rounded"
+        style="width: 19rem"
+        *ngFor="let c of listproject | listProjectPipe: searchCat"
+      >
+
+
+        <div class="card-body">
+          <h2 class="card-title text-center text-success">
+            {{ c.name_project }}
+          </h2>
+          <div class="card-body">
+            <h2 class="card-title text-center text-success">
+              {{ c.description_projet }}
+            </h2>
+
+          <div
+            class="text-center"
+            *ngIf="storage.getUser().roles == 'ROLE_ADMIN'"
+          >
+            <button
+              type="button"
+              class="btn btn-danger btn-sm me-3 p-3 m-1"
+              (click)="Deleteproject(c.id)"
+            >
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-info btn-sm p-3"
+              (click)="onDetail(c)"
+            >
+              <i class="fa fa-pen m-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

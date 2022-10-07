@@ -1,0 +1,79 @@
+<div class="container position d-flex flex-column min-vh-100">
+  <div class="card col-md-6 offset-3 mt-4 shadow-lg">
+    <div class="card-header"><strong>New User</strong></div>
+    <div class="card-body">
+      <form
+        [formGroup]="newuserFormGroup"
+        (ngSubmit)="handleSaveuser()"
+      >
+        <div class="mb-3">
+          <label class="form-label">Full Name:</label>
+          <input type="text" formControlName="username" class="form-control" />
+          <span
+            class="text-danger"
+            *ngIf="
+            newuserFormGroup.controls['username'].touched &&
+            newuserFormGroup.controls['username'].errors &&
+            newuserFormGroup.controls['username'].errors!['required']
+            "
+          >
+            Name is Required
+          </span>
+        </div>
+
+
+
+        <div class="mb-3">
+          <label class="form-label">Email:</label>
+          <input type="text" formControlName="email" class="form-control" />
+          <span
+            class="text-danger"
+            *ngIf="
+              newuserFormGroup.controls['email'].touched &&
+              newuserFormGroup.controls['email'].errors &&
+              newuserFormGroup.controls['email'].errors!['email']
+            "
+          >
+            Email is Not Valid
+          </span>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">password:</label>
+          <input type="text" formControlName="password" class="form-control" />
+          <span
+            class="text-danger"
+            *ngIf="
+            newuserFormGroup.controls['password'].touched &&
+            newuserFormGroup.controls['password'].errors &&
+            newuserFormGroup.controls['password'].errors!['required']
+            "
+          >
+            password is Required
+          </span>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Role:</label>
+          <input type="text" formControlName="roles" class="form-control" />
+          <span
+            class="text-danger"
+            *ngIf="
+            newuserFormGroup.controls['roles'].touched &&
+            newuserFormGroup.controls['roles'].errors &&
+            newuserFormGroup.controls['roles'].errors!['required']
+            "
+          >
+            role is Required
+          </span>
+        </div>
+        <button
+          class="btn btn-success"
+          [disabled]="!newuserFormGroup.valid"
+        >
+          Save
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
