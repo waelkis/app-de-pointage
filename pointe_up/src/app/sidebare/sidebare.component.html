@@ -82,6 +82,17 @@ Calendar
 
   <li class="nav-item">
 
+    <a routerLink="/listproject" class="nav-link">
+      <i class="fa fa-file" aria-hidden="true"></i>
+    <p>
+    Project
+    <span class="badge badge-info right">2</span>
+    </p>
+    </a>
+    </li>
+
+  <li class="nav-item"  *ngIf="storage.getUser().roles == 'ROLE_ADMIN'">
+
     <a routerLink="/listuser" class="nav-link">
       <i class="fa fa-users" aria-hidden="true"></i>
     <p>
@@ -91,7 +102,7 @@ Calendar
     </a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item"  *ngIf="storage.getUser().roles == 'ROLE_ADMIN'">
 
       <a routerLink="/adduser" class="nav-link">
         <i class="fa fa-user" aria-hidden="true"></i>
