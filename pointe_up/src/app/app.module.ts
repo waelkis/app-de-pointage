@@ -17,6 +17,8 @@ import { AddprojectComponent } from './pages/project/addproject/addproject.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { CalendarComponent } from './pages/project/calendar/calendar/calendar.component';
+import { DayPilotModule } from 'daypilot-pro-angular';
 
 
 
@@ -33,7 +35,8 @@ import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dial
     EdituserComponent,
     ListprojectComponent,
     EditprojectComponent,
-    AddprojectComponent
+    AddprojectComponent,
+    CalendarComponent
 
 
 
@@ -47,6 +50,7 @@ import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dial
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    DayPilotModule
 
 
 

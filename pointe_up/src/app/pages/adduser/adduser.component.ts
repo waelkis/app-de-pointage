@@ -1,8 +1,10 @@
+import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/service/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-adduser',
@@ -34,18 +36,16 @@ export class AdduserComponent implements OnInit {
   handleSaveuser() {
     let user: User = this.newuserFormGroup?.value;
     this.userservice.addUsers(user).subscribe(
-      // next: (data) => {
-      //   Swal.fire(
-      //     'Good job!',
-      //     'user has been successfully saved !',
-      //     'success'
-      //   );
-      //   this.router.navigateByUrl('/navbar/users');
-      // },
-      // error: (err) => {
-      //   console.log(err);
-      // },
-      data=>this.router.navigateByUrl('/admin/listusers')
+      (data) => {
+        Swal.fire(
+          'Good job!',
+          'user has been successfully saved !',
+          'success'
+        );
+        this.router.navigateByUrl('/listuser');
+      },
+     
+      data=>this.router.navigateByUrl('/listusers')
 
     );
   }
