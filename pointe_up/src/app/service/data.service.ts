@@ -11,7 +11,7 @@ export class DataService {
   resources: DayPilot.ResourceData[] = [
     {
       name: 'Group A', id: 'GA', expanded: true, children: [
-       
+
         {name: 'Resource 2', id: 'R2', capacity: 30},
         {name: 'Resource 3', id: 'R3', capacity: 20},
         {name: 'Resource 4', id: 'R4', capacity: 40}

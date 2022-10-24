@@ -21,8 +21,12 @@
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
     "@material/dialog": "^14.0.0",
-    
+    "angular-datatables": "^14.0.0",
+    "datatables.net": "^1.12.1",
+    "datatables.net-dt": "^1.12.1",
     "daypilot-pro-angular": "https://npm.daypilot.org/daypilot-pro-angular/trial/2022.3.5368.tar.gz",
+    "jquery": "^3.6.1",
+    "ng2-search-filter": "^0.5.1",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.4.37",
     "tslib": "^2.3.0",

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/service/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listuser',
@@ -22,12 +23,12 @@ users!: Observable<Array<User>>;
     this.userservice.getAllUsers().subscribe(data=>this.dataArray=data)
     console.log(this.dataArray)
 
-
-
-
   }
 
+
   handleDeleteUser(c: User) {
+
+
     let conf = confirm('Are you sure?');
     if (!conf) return;
     this.userservice.deleteUser(c.id).subscribe({
@@ -45,7 +46,9 @@ users!: Observable<Array<User>>;
       },
 
     });
-    this.userservice.refresh()
+     this.userservice.refresh()
+
   }
+
 
 }

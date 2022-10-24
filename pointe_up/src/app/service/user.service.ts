@@ -40,6 +40,7 @@ export class UserService {
     window.location.reload();
 }
 
+
   // public saveCustomer(customer: Customer): Observable<Customer> {
   //   return this.http.post<Customer>(
   //     environment.backendHost + '/api/cust/customers',

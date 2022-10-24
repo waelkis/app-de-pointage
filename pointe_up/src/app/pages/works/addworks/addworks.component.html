@@ -1,0 +1,85 @@
+<div class="col-sm-8 col-sm-offset-2">
+  <form [formGroup]="worksForm" (ngSubmit)="onSubmitForm()">
+
+
+    <div class="form-group">
+      <label for="designation" class="fs-5 mt-3">Désignation:</label>
+      <input
+        type="text"
+        id="designation"
+        name="designation"
+        class="form-control mb-4 p-3 mt-4"
+        formControlName="designation"
+      />
+      <div
+        *ngIf="
+          designation?.invalid && (designation?.dirty || designation?.touched)
+        "
+        class="alert alert-danger mt-1"
+      >
+        <div *ngIf="designation?.errors?.['required']">Champs obligatoire</div>
+
+        <div *ngIf="designation?.errors?.['minlength']">
+          Le champs doit contenir au moins 2 caractères
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nombre_heur" class="fs-5 mt-3">Nombre de heur:</label>
+      <input
+        type="text"
+        id="nombre_heur"
+        name="nombre_heur"
+        class="form-control mb-4 p-3 mt-4"
+        formControlName="nombre_heur"
+      />
+      <div
+        *ngIf="nombre_heur?.invalid && (nombre_heur?.dirty || nombre_heur?.touched)"
+        class="alert alert-danger mt-1"
+      >
+        <div *ngIf="nombre_heur?.errors?.['required']">Champs obligatoire</div>
+      </div>
+    </div>
+
+     <table class="mb-5">
+      <tr>
+        <td>
+          <div class="form-group me-5">
+            <label for="projectsID" class="fs-5">Project:</label>
+            <select
+              name="projectsID"
+              class="form-control form-select mt-3"
+              formControlName="projectsID"
+              (change)="changeSuit($event)"
+            >
+              <option *ngFor="let d of projectsID" value="{{ d.id }}">
+                {{ d.name_project }}
+              </option>
+            </select>
+            <div
+
+              class="alert alert-danger mt-1"
+            >
+
+            </div>
+          </div>
+        </td>
+
+      </tr>
+    </table>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-dark me-3 p-3">
+        Enregistrer <i class="fa fa-database ms-2"></i>
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-dark ml-1 p-3"
+        [mat-dialog-close]
+      >
+        <i class="fa fa-close"></i> Close
+      </button>
+    </div>
+  </form>
+</div>

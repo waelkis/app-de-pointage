@@ -17,8 +17,17 @@ import { AddprojectComponent } from './pages/project/addproject/addproject.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { CalendarComponent } from './pages/project/calendar/calendar/calendar.component';
+
 import { DayPilotModule } from 'daypilot-pro-angular';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AddworksComponent } from './pages/works/addworks/addworks.component';
+import { EditworksComponent } from './pages/works/editworks/editworks.component';
+import { ListworksComponent } from './pages/works/listworks/listworks.component';
+
+
+
+
+
 
 
 
@@ -36,7 +45,11 @@ import { DayPilotModule } from 'daypilot-pro-angular';
     ListprojectComponent,
     EditprojectComponent,
     AddprojectComponent,
-    CalendarComponent
+    AddworksComponent,
+    EditworksComponent,
+    ListworksComponent,
+
+
 
 
 
@@ -50,14 +63,15 @@ import { DayPilotModule } from 'daypilot-pro-angular';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    DayPilotModule
-
+    DayPilotModule,
+    Ng2SearchPipeModule,
 
 
 
 
 
   ],
+
   providers: [
 
 
