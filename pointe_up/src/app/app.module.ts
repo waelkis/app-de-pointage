@@ -26,6 +26,25 @@ import { ListworksComponent } from './pages/works/listworks/listworks.component'
 
 
 
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule} from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatRippleModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { CommonModule } from '@angular/common';
+import { AjouterComponent } from './pages/adduser/ajouter/ajouter.component';
+
+
+
+
+
+
+import { ClipboardModule } from 'ngx-clipboard';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 
@@ -48,6 +67,7 @@ import { ListworksComponent } from './pages/works/listworks/listworks.component'
     AddworksComponent,
     EditworksComponent,
     ListworksComponent,
+    AjouterComponent,
 
 
 
@@ -65,6 +85,37 @@ import { ListworksComponent } from './pages/works/listworks/listworks.component'
     MatDialogModule,
     DayPilotModule,
     Ng2SearchPipeModule,
+
+
+
+   ClipboardModule,
+    MatTableModule,
+    MatDialogModule,
+    //CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+   MatDividerModule,
+  //   * MATERIAL IMPORTS
+   // MatSidenavModule,
+    MatToolbarModule,
+     MatInputModule,
+    MatIconModule,
+    MatDividerModule,
+ //   MatListModule,
+     MatTableModule,
+     HttpClientModule,
+     MatPaginatorModule,
+     ReactiveFormsModule,
+     MatDialogModule,
+    // MatMenuModule,
+     MatButtonModule,
+     MatRippleModule,
+     MatFormFieldModule,
+     MatInputModule,
+     MatSelectModule,
+     FormsModule,
 
 
 

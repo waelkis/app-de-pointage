@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Project } from 'src/app/models/project';
 import { ProjectService } from 'src/app/service/project.service';
@@ -14,9 +14,9 @@ import Swal from 'sweetalert2';
 
 export class AddprojectComponent implements OnInit {
   cat: Project = new Project();
-  projectForm!: FormGroup;
+  projectForm!: UntypedFormGroup;
   constructor(
-    private formbuilder: FormBuilder,
+    private formbuilder: UntypedFormBuilder,
     private CatService: ProjectService,
     public dialogref: MatDialogRef<AddprojectComponent>
   ) {}
@@ -26,11 +26,11 @@ export class AddprojectComponent implements OnInit {
   }
   initForms() {
     this.projectForm = this.formbuilder.group({
-      name_project: new FormControl('', [
+      name_project: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(2),
       ]),
-      description_projet: new FormControl('', [Validators.required]),
+      description_projet: new UntypedFormControl('', [Validators.required]),
     });
   }
   get name_project() {

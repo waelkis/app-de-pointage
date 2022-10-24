@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Project } from 'src/app/models/project';
 import { Works } from 'src/app/models/works';
@@ -19,9 +19,9 @@ export class AddworksComponent implements OnInit {
 
   tab: any = [];
   projectid!: object;
-  worksForm!: FormGroup;
+  worksForm!: UntypedFormGroup;
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     public dialogref: MatDialogRef<AddworksComponent>,
     private artserv: WorksService,
     private catserv: ProjectService,
@@ -34,17 +34,17 @@ export class AddworksComponent implements OnInit {
   }
   initForms() {
     this.worksForm = this.fb.group({
-      nombre_heur: new FormControl('', [
+      nombre_heur: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(2),
       ]),
-      designation: new FormControl('', [
+      designation: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(2),
       ]),
 
 
-      project: new FormControl('', [Validators.required]),
+      project: new UntypedFormControl('', [Validators.required]),
 
     });
   }
