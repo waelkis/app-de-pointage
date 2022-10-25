@@ -1,4 +1,4 @@
-import { error } from '@angular/compiler/src/util';
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -44,7 +44,7 @@ export class AdduserComponent implements OnInit {
         );
         this.router.navigateByUrl('/listuser');
       },
-     
+
       data=>this.router.navigateByUrl('/listusers')
 
     );
