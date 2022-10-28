@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Project } from 'src/app/models/project';
 import { Works } from 'src/app/models/works';
@@ -13,83 +13,113 @@ import Swal from 'sweetalert2';
   styleUrls: ['./addworks.component.css']
 })
 export class AddworksComponent implements OnInit {
+  proj!: Project[];
+  myform!: FormGroup;
+  date!: FormControl;
+  email!: FormControl;
+  project!: FormControl;
+constructor(private projectser:ProjectService){}
+   Date =new Date();
 
-  nouvTask: Works = new Works();
-  projectsID!: Project[];
+  ngOnInit(): void {
 
-  tab: any = [];
-  projectid!: object;
-  worksForm!: FormGroup;
-  constructor(
-    private fb: FormBuilder,
-    public dialogref: MatDialogRef<AddworksComponent>,
-    private artserv: WorksService,
-    private catserv: ProjectService,
+    this.createFormControls();
+    this.createForm();
+    this.LoadProject()
 
-  ) {}
-
-  ngOnInit() {
-    this.initForms();
-    this.loadWorks();
-  }
-  initForms() {
-    this.worksForm = this.fb.group({
-      nombre_heur: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-      ]),
-      designation: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-      ]),
-
-
-      project: new FormControl('', [Validators.required]),
-
-    });
-  }
-  get nombre_heur() {
-    return this.worksForm.get('nombre_heur');
   }
 
-  get designation() {
-    return this.worksForm.get('designation');
+  createFormControls() {
+    this.date = new FormControl('', Validators.required);
+
+    this.email = new FormControl('', [
+      Validators.required,
+      Validators.pattern("[^ @]*@[^ @]*")
+    ]);
+
+
+    this.project = new FormControl('');
   }
 
+  createForm() {
+    this.myform = new FormGroup({
+      name: new FormGroup({
+        firstName: this.date,
 
-  get project() {
-    return this.worksForm.get('project');
-  }
-
-
-  onSubmitForm() {
-    let task: Works = this.worksForm?.value;
-    this.artserv.Addworks(task).subscribe({
-      next: (data) => {
-        this.dialogref.close();
-        Swal.fire(
-          "L'insertion a été effectuée avec succès!",
-          'Cliquer içi!',
-          'success'
-        );
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
-
-  loadWorks() {
-    return (
-      this.catserv.getProjects().subscribe((data) => {
-        this.projectid = data;
       }),
-      (err: any) => console.log(err)
-    );
-  }
-  changeSuit(e: any) {
-    this.projectid = e.target.value;
+      email: this.email,
 
+      proj: this.project
+    });
   }
+  LoadProject(){
+    return this.projectser.getProjects().subscribe(
+      data =>this.proj =data
+    ),
+    (err:any)=>console.log(err)
+  }
+
+  onSubmit() {
+    if (this.myform.valid) {
+      console.log("Form Submitted!");
+      this.myform.reset();
+    }
+  }
+// nouvworks: Works=new Works();
+// projectID!:Project[];
+// tab!:any[];
+// projectid!:object;
+// worksForm!:FormGroup;
+// constructor(
+//   private fb: FormBuilder,
+//   public dialogref: MatDialogRef<AddworksComponent>,
+//   private artserv: WorksService,
+//   private catserv: ProjectService,
+
+// ) {}
+
+
+
+//   ngOnInit(): void {
+//     throw new Error('Method not implemented.');
+//   }
+//   initForms(){
+//     this.worksForm= this.fb.group({
+//       nombre_heur:new FormControl('',[Validators.required,Validators.minLength(2)]),
+//       designation:new FormControl('',[Validators.required,Validators.minLength(2)]),
+//       Project: new FormControl('', [Validators.required]),
+//     })
+//   }
+//   get nombre_heur() {
+//     return this.worksForm.get('nombre_heur');
+//   }
+
+//   get designation() {
+//     return this.worksForm.get('designation');
+//   }
+
+//   get Project() {
+//     return this.worksForm.get('Project');
+//   }
+// onSubmitForm(){
+//   let works:Works = this.worksForm?.value;
+//   this.artserv.Addworks(works).subscribe({
+//     next:(data)=>{
+//       this.dialogref.close();
+//         Swal.fire(
+//           "L'insertion a été effectuée avec succès!",
+//           'Cliquer içi!',
+//           'success'
+//         );
+//     },
+//     error: (err) => {
+//       console.log(err);
+//     },
+//   })
+// }
+
+
 
 }
+
+

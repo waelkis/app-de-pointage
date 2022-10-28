@@ -65,6 +65,7 @@ import { ListworksComponent } from './pages/works/listworks/listworks.component'
     MatDialogModule,
     DayPilotModule,
     Ng2SearchPipeModule,
+    
 
 
 

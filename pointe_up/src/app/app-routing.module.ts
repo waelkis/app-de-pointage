@@ -26,11 +26,6 @@ const routes: Routes = [
     {path:'editworks/:id',component:EditworksComponent},
     {path:'listworks',component:ListworksComponent},
 
-
-
-
-
-
   ]},
 
 

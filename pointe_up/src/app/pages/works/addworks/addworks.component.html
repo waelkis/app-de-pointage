@@ -1,85 +1,66 @@
-<div class="col-sm-8 col-sm-offset-2">
-  <form [formGroup]="worksForm" (ngSubmit)="onSubmitForm()">
+<div class="container">
+  <form novalidate
+      [formGroup]="myform"
+      (ngSubmit)="onSubmit()">
+  <fieldset formGroupName="name">
+    <div class="form-group"
+         [ngClass]="{
+        'has-danger': date.invalid && (date.dirty || date.touched),
+        'has-success': date.valid && (date.dirty || date.touched)
+      }">
+      <label >Date</label>
+      <h1>{{Date |  date: 'dd/MM/yy, à HH:mm'  }}</h1>
+      <input type="date"
+             class="form-control"
+             formControlName="date"
 
+             >
+      <div class="form-control-feedback"
+           *ngIf="date.errors && (date.dirty || date.touched)">
 
-    <div class="form-group">
-      <label for="designation" class="fs-5 mt-3">Désignation:</label>
-      <input
-        type="text"
-        id="designation"
-        name="designation"
-        class="form-control mb-4 p-3 mt-4"
-        formControlName="designation"
-      />
-      <div
-        *ngIf="
-          designation?.invalid && (designation?.dirty || designation?.touched)
-        "
-        class="alert alert-danger mt-1"
-      >
-        <div *ngIf="designation?.errors?.['required']">Champs obligatoire</div>
-
-        <div *ngIf="designation?.errors?.['minlength']">
-          Le champs doit contenir au moins 2 caractères
-        </div>
       </div>
+
     </div>
 
-    <div class="form-group">
-      <label for="nombre_heur" class="fs-5 mt-3">Nombre de heur:</label>
-      <input
-        type="text"
-        id="nombre_heur"
-        name="nombre_heur"
-        class="form-control mb-4 p-3 mt-4"
-        formControlName="nombre_heur"
-      />
-      <div
-        *ngIf="nombre_heur?.invalid && (nombre_heur?.dirty || nombre_heur?.touched)"
-        class="alert alert-danger mt-1"
-      >
-        <div *ngIf="nombre_heur?.errors?.['required']">Champs obligatoire</div>
-      </div>
+  </fieldset>
+  <div class="form-group"
+       [ngClass]="{
+        'has-danger': email.invalid && (email.dirty || email.touched),
+        'has-success': email.valid && (email.dirty || email.touched)
+   }">
+    <label>Email</label>
+    <input type="email"
+           class="form-control"
+           formControlName="email"
+           required>
+    <div class="form-control-feedback"
+         *ngIf="email.errors && (email.dirty || email.touched)">
+      <p *ngIf="email.errors">Email is required</p>
+      <p *ngIf="email.errors">The email address must contain at least the @ character</p>
     </div>
 
-     <table class="mb-5">
-      <tr>
-        <td>
-          <div class="form-group me-5">
-            <label for="projectsID" class="fs-5">Project:</label>
-            <select
-              name="projectsID"
-              class="form-control form-select mt-3"
-              formControlName="projectsID"
-              (change)="changeSuit($event)"
-            >
-              <option *ngFor="let d of projectsID" value="{{ d.id }}">
-                {{ d.name_project }}
-              </option>
-            </select>
-            <div
+  </div>
 
-              class="alert alert-danger mt-1"
-            >
-
-            </div>
-          </div>
-        </td>
-
-      </tr>
-    </table>
-
-    <div class="form-group">
-      <button type="submit" class="btn btn-dark me-3 p-3">
-        Enregistrer <i class="fa fa-database ms-2"></i>
-      </button>
-      <button
-        type="button"
-        class="btn btn-outline-dark ml-1 p-3"
-        [mat-dialog-close]
-      >
-        <i class="fa fa-close"></i> Close
-      </button>
-    </div>
-  </form>
+  <!--
+    <pre>{{ language.errors | json }}</pre>
+  -->
+  <div class="form-group"
+       [ngClass]="{
+        'has-danger': project.invalid && (project.dirty || project.touched),
+        'has-success': project.valid && (project.dirty || project.touched)
+      }">
+    <label>project</label>
+    <select class="form-control"
+            formControlName="project">
+      <option value="">Please select your project</option>
+      <option *ngFor="let p of proj"
+              [value]="p">{{p.name_project}}
+      </option>
+    </select>
+  </div>
+  <button type="submit"
+          class="btn btn-primary">Submit
+  </button>
+  <!-- <pre>{{myform.value | json}}</pre> -->
+</form>
 </div>
