@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Project } from 'src/app/models/project';
+import { User } from 'src/app/models/user';
 import { Works } from 'src/app/models/works';
 import { ProjectService } from 'src/app/service/project.service';
+import { StorageService } from 'src/app/service/storage.service';
 import { WorksService } from 'src/app/service/works.service';
 import Swal from 'sweetalert2';
 
@@ -13,113 +15,73 @@ import Swal from 'sweetalert2';
   styleUrls: ['./addworks.component.css']
 })
 export class AddworksComponent implements OnInit {
-  proj!: Project[];
-  myform!: FormGroup;
-  date!: FormControl;
-  email!: FormControl;
-  project!: FormControl;
-constructor(private projectser:ProjectService){}
-   Date =new Date();
 
-  ngOnInit(): void {
+  projectList!: Project[];
 
-    this.createFormControls();
-    this.createForm();
-    this.LoadProject()
+  worksForm! : FormGroup;
+  router: any;
+  constructor(
+    private artserv: WorksService,
+    private catserv: ProjectService,
+   public  storage: StorageService,
+  ) {}
 
+  ngOnInit() {
+    this.initForms();
+    this.loadProject();
   }
-
-  createFormControls() {
-    this.date = new FormControl('', Validators.required);
-
-    this.email = new FormControl('', [
-      Validators.required,
-      Validators.pattern("[^ @]*@[^ @]*")
-    ]);
-
-
-    this.project = new FormControl('');
-  }
-
-  createForm() {
-    this.myform = new FormGroup({
-      name: new FormGroup({
-        firstName: this.date,
-
-      }),
-      email: this.email,
-
-      proj: this.project
+  initForms() {
+    this.worksForm = new FormGroup({
+      nombre_heur: new FormControl<number>(5, [Validators.required,Validators.minLength(1),]),
+      description: new FormControl<string>('fgfd', [Validators.required,Validators.minLength(2),]),
+      project: new FormControl<Project>(new Project(), [Validators.required]),
     });
   }
-  LoadProject(){
-    return this.projectser.getProjects().subscribe(
-      data =>this.proj =data
-    ),
-    (err:any)=>console.log(err)
+
+  onSubmitForm() {
+    //let task : Works = this.worksForm?.value;
+    //  let task = new Works();
+    //  task.description=this.worksForm.controls['description']?.value
+    //  task.user=this.storage.getUser()
+
+    // //  task.project=this.worksForm.controls['projet']?.value;
+    // task.project = this.projectid;
+    let task = (this.worksForm?.value as Works)
+
+    task.user = new User();
+    task.user.id = this.storage.getUser().id
+
+
+    console.log( this.worksForm.value);
+
+    console.log(task)
+
+
+    this.artserv.Addworks(task).subscribe({
+      next: (data) => {
+
+        Swal.fire(
+          "L'insertion a été effectuée avec succès!",
+          'Cliquer içi!',
+          'success'
+        );
+      },
+      error: (err) => {
+        console.log(err);
+      },
+
+    });
+    //this.router.navigateByUrl('/listworks');
   }
 
-  onSubmit() {
-    if (this.myform.valid) {
-      console.log("Form Submitted!");
-      this.myform.reset();
-    }
+  loadProject() {
+    return (
+      this.catserv.getProjects().subscribe((data) => {
+        this.projectList = data;
+      }),
+      (err: any) => console.log(err)
+    );
+
   }
-// nouvworks: Works=new Works();
-// projectID!:Project[];
-// tab!:any[];
-// projectid!:object;
-// worksForm!:FormGroup;
-// constructor(
-//   private fb: FormBuilder,
-//   public dialogref: MatDialogRef<AddworksComponent>,
-//   private artserv: WorksService,
-//   private catserv: ProjectService,
-
-// ) {}
-
-
-
-//   ngOnInit(): void {
-//     throw new Error('Method not implemented.');
-//   }
-//   initForms(){
-//     this.worksForm= this.fb.group({
-//       nombre_heur:new FormControl('',[Validators.required,Validators.minLength(2)]),
-//       designation:new FormControl('',[Validators.required,Validators.minLength(2)]),
-//       Project: new FormControl('', [Validators.required]),
-//     })
-//   }
-//   get nombre_heur() {
-//     return this.worksForm.get('nombre_heur');
-//   }
-
-//   get designation() {
-//     return this.worksForm.get('designation');
-//   }
-
-//   get Project() {
-//     return this.worksForm.get('Project');
-//   }
-// onSubmitForm(){
-//   let works:Works = this.worksForm?.value;
-//   this.artserv.Addworks(works).subscribe({
-//     next:(data)=>{
-//       this.dialogref.close();
-//         Swal.fire(
-//           "L'insertion a été effectuée avec succès!",
-//           'Cliquer içi!',
-//           'success'
-//         );
-//     },
-//     error: (err) => {
-//       console.log(err);
-//     },
-//   })
-// }
-
-
 
 }
-
-

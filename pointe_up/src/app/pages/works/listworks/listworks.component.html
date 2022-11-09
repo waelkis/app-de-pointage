@@ -1,0 +1,49 @@
+<table id="example1" class="table table-bordered table-striped">
+  <thead>
+  <tr>
+
+    <th>Nom du prjet</th>
+    <th>Description du projet</th>
+    <th>Date du jour</th>
+    <th>user name</th>
+
+    <th>Action</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let c of listworks"  >
+
+
+    <td>{{c.nombre_heur}}</td>
+    <td>{{c.description}}</td>
+     <td>{{c.date_jour}}</td>
+     <td >{{c.user? c.user.username : 'UNKNOW'}}</td>
+
+
+
+    <div
+    class="text-center"
+
+    >
+    <button
+        type="button"
+        class="btn btn-danger btn-sm me-3 p-3 m-1"
+        (click)="Deleteworks(c.id)"
+      >
+      <i class="fa fa-trash" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        class="btn btn-info btn-sm p-3"
+        (click)="onDetail(c)"
+      >
+      <i class="fa fa-pen" aria-hidden="true"></i>
+      </button>
+     </div>
+
+  </tr>
+
+
+
+</table>

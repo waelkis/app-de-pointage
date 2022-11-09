@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { identity, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Works } from '../models/works';
 import { StorageService } from './storage.service';
@@ -10,7 +10,7 @@ import { StorageService } from './storage.service';
 })
 export class WorksService {
 
-   url = environment.baseUrl + 'projects';
+   url = environment.baseUrl + 'works';
   // authService: any;
    constructor(private http: HttpClient,private authService: StorageService) {}
    public getHeaders(): HttpHeaders {
@@ -27,9 +27,7 @@ export class WorksService {
    getWorks = (): Observable<Works[]> => {
      return this.http.get<Works[]>(this.url + '/',{ headers: this.getHeaders() });
    };
-   Addworks = (cat: Works): Observable<Works> => {
-     return this.http.post<Works>(this.url + '/', cat,{ headers: this.getHeaders() });
-   };
+   Addworks = (cat: Works): Observable<Works> => this.http.post<Works>(this.url + '/', cat, { headers: this.getHeaders() });
    GetWorksById(id: object): Observable<Works> {
      return this.http.get<Works>(this.url + '/' + id,{ headers: this.getHeaders() });
    }

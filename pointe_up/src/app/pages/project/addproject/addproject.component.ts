@@ -42,6 +42,7 @@ export class AddprojectComponent implements OnInit {
   }
   onSubmitForm() {
     let categ: Project = this.projectForm?.value;
+    console.log(categ)
     this.CatService.AddProject(categ).subscribe({
       next: (data) => {
         this.dialogref.close();
