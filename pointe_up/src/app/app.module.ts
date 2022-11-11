@@ -23,6 +23,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AddworksComponent } from './pages/works/addworks/addworks.component';
 import { EditworksComponent } from './pages/works/editworks/editworks.component';
 import { ListworksComponent } from './pages/works/listworks/listworks.component';
+import { ProduitComponent } from './pages/produit/produit.component';
 
 
 
@@ -48,6 +49,7 @@ import { ListworksComponent } from './pages/works/listworks/listworks.component'
     AddworksComponent,
     EditworksComponent,
     ListworksComponent,
+    ProduitComponent,
 
 
 

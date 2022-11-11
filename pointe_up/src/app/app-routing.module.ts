@@ -4,6 +4,7 @@ import { GuarduserGuard } from './guard/guarduser.guard';
 import { AdduserComponent } from './pages/adduser/adduser.component';
 import { EdituserComponent } from './pages/edituser/edituser.component';
 import { ListuserComponent } from './pages/listuser/listuser.component';
+import { ProduitComponent } from './pages/produit/produit.component';
 import { AddprojectComponent } from './pages/project/addproject/addproject.component';
 
 import { EditprojectComponent } from './pages/project/editproject/editproject.component';
@@ -16,6 +17,7 @@ import { LoginuserComponent } from './user/loginuser/loginuser.component';
 
 const routes: Routes = [
   {path:'',component:SidebareComponent,canActivate:[GuarduserGuard],children :[
+    {path:'',component:AddworksComponent},
     {path:'adduser',component:AdduserComponent},
     {path:'listuser',component:ListuserComponent},
     {path:'edituser/:_id',component:EdituserComponent},
@@ -25,6 +27,8 @@ const routes: Routes = [
     {path:'addworks',component:AddworksComponent},
     {path:'editworks/:id',component:EditworksComponent},
     {path:'listworks',component:ListworksComponent},
+    {path:'produit',component:ProduitComponent},
+
 
   ]},
 

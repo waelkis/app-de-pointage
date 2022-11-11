@@ -3,9 +3,9 @@ import { User } from "./user";
 
 export class Works {
   id!: object;
-  nombre_heur!: string;
+  nombreHeure!: string;
   description!: string;
-  date_jour!:string;
+  dateJour!:string;
 
   project!: Project;
   user!:User

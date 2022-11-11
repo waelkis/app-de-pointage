@@ -1,1 +1,39 @@
-<p>editworks works!</p>
+<div class="col-sm-8 col-sm-offset-2">
+  <form [formGroup]="worksForm" (ngSubmit)="onSubmitForm()">
+    <div class="form-group">
+      <label for="name_project" class="fs-5 mt-2">Nom du projet</label>
+      <input
+        type="text"
+        id="name_project"
+        class="form-control mb-4 p-3 mt-3"
+        formControlName="name_project"
+      />
+      <label for="description" class="fs-5 mt-2">Description </label>
+      <input
+      type="text"
+      id="description"
+      class="form-control mb-4 p-3 mt-3"
+      formControlName="description"/>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-dark me-3 p-3">
+        Enregistrer <i class="fa fa-database ms-2"></i>
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-dark ml-1 p-3"
+        [mat-dialog-close]
+      >
+        <i class="fa fa-close"></i> Close
+      </button>
+    </div>
+  </form>
+</div>

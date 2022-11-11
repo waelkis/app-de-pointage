@@ -17,6 +17,8 @@ import Swal from 'sweetalert2';
 export class AddworksComponent implements OnInit {
 
   projectList!: Project[];
+  workslist!:Works[];
+  maDate = new Date();
 
   worksForm! : FormGroup;
   router: any;
@@ -32,8 +34,8 @@ export class AddworksComponent implements OnInit {
   }
   initForms() {
     this.worksForm = new FormGroup({
-      nombre_heur: new FormControl<number>(5, [Validators.required,Validators.minLength(1),]),
-      description: new FormControl<string>('fgfd', [Validators.required,Validators.minLength(2),]),
+      nombreHeure: new FormControl<number>(4, [Validators.required,Validators.minLength(1),]),
+      description: new FormControl<string>('', [Validators.required,Validators.minLength(2),]),
       project: new FormControl<Project>(new Project(), [Validators.required]),
     });
   }
@@ -65,13 +67,14 @@ export class AddworksComponent implements OnInit {
           'Cliquer içi!',
           'success'
         );
+
       },
       error: (err) => {
         console.log(err);
       },
 
     });
-    //this.router.navigateByUrl('/listworks');
+
   }
 
   loadProject() {
