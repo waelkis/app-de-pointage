@@ -45,7 +45,7 @@ export class AdduserComponent implements OnInit {
         this.router.navigateByUrl('/listuser');
       },
 
-      data=>this.router.navigateByUrl('/listusers')
+
 
     );
   }

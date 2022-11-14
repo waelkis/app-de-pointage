@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Project } from 'src/app/models/project';
 import { User } from 'src/app/models/user';
 import { Works } from 'src/app/models/works';
@@ -21,11 +22,12 @@ export class AddworksComponent implements OnInit {
   maDate = new Date();
 
   worksForm! : FormGroup;
-  router: any;
+ // router: any;
   constructor(
     private artserv: WorksService,
     private catserv: ProjectService,
    public  storage: StorageService,
+   private router:Router,
   ) {}
 
   ngOnInit() {
@@ -34,9 +36,10 @@ export class AddworksComponent implements OnInit {
   }
   initForms() {
     this.worksForm = new FormGroup({
-      nombreHeure: new FormControl<number>(4, [Validators.required,Validators.minLength(1),]),
-      description: new FormControl<string>('', [Validators.required,Validators.minLength(2),]),
-      project: new FormControl<Project>(new Project(), [Validators.required]),
+    dateJour:new FormControl(new Date()),
+      nombreHeure: new FormControl(0, [Validators.required,Validators.minLength(1),]),
+      description: new FormControl('', [Validators.required,Validators.minLength(2),]),
+      project: new FormControl(new Project(), [Validators.required]),
     });
   }
 
@@ -73,7 +76,11 @@ export class AddworksComponent implements OnInit {
         console.log(err);
       },
 
+
+
     });
+    this.router.navigate(['/listworks']);
+
 
   }
 

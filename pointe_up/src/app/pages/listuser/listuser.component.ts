@@ -10,6 +10,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./listuser.component.css']
 })
 export class ListuserComponent implements OnInit {
+  // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   dataArray!:User[]
 users!: Observable<Array<User>>;

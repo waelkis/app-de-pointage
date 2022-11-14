@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Project } from 'src/app/models/project';
 import { User } from 'src/app/models/user';
 import { Works } from 'src/app/models/works';
+import { ProjectService } from 'src/app/service/project.service';
 import { WorksService } from 'src/app/service/works.service';
 import Swal from 'sweetalert2';
 
@@ -16,39 +17,42 @@ export class EditworksComponent implements OnInit {
 
   id: object;
   worksForm!: FormGroup;
-  nombre_heur!: string;
+  nombreHeure!: string;
   description!: string;
-  date_jour!:string;
+  dateJour!:string;
+  projectList!: Project[];
 
   project!: Project;
   user!:User
 
   constructor(
     private formbuilder: FormBuilder,
+    private catserv:ProjectService,
     private CatService: WorksService,
     public dialogref: MatDialogRef<EditworksComponent>,
     @Inject(MAT_DIALOG_DATA) data: any
   ) {
     this.id = data.id;
-    this.nombre_heur=data.nombre_heur;
+    this.nombreHeure=data.nombreHeure;
     this.description=data.description;
-    this.date_jour=data.date_jour;
-    //this.project.name_project=data.project.name_project;
-    //this.user.username=data.user.username;
+    this.dateJour=data.dateJour;
+    this.project=data.project;
+    this.user=data.user;
   }
   cat: Works = new Works();
   ngOnInit() {
     this.initForms();
+    this.loadProject();
   }
   initForms() {
     this.worksForm = this.formbuilder.group({
       id: this.id,
 
-      nombre_heur:this.nombre_heur,
+      nombreHeure:this.nombreHeure,
       description:this.description,
-    //  project:this.project.name_project,
-      date_jour:this.date_jour,
-     // user:this.user.username
+       project:this.project,
+      dateJour:this.dateJour,
+      user:this.user
 
     });
   }
@@ -56,10 +60,12 @@ export class EditworksComponent implements OnInit {
     const formValue = this.worksForm.value;
     const newCat: Works = new Works();
     newCat.id = formValue['id'];
-   // newCat.project.name_project = formValue['name_project'];
+   newCat.project = formValue['project'];
      newCat.description = formValue['description'];
      newCat.dateJour = formValue['dateJour'];
-    // newCat.user.username = formValue['username'];
+     newCat.nombreHeure = formValue['nombreHeure'];
+     newCat.user = new User();
+     newCat.user.id = formValue['user']['id'];
 
     this.CatService.UpdateWorks(newCat.id, newCat).subscribe((data) => {
       this.cat = data;
@@ -75,4 +81,15 @@ export class EditworksComponent implements OnInit {
   onFileChanged(event: any) {
     console.log(event.target.files[0].name);
   }
+
+    loadProject() {
+    return (
+      this.catserv.getProjects().subscribe((data) => {
+        this.projectList = data;
+        console.log(data)
+      }),
+      (err: any) => console.log(err)
+    );
+    }
+
 }

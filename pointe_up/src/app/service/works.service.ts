@@ -28,6 +28,8 @@ export class WorksService {
      return this.http.get<Works[]>(this.url + '/',{ headers: this.getHeaders() });
    };
    Addworks = (cat: Works): Observable<Works> => this.http.post<Works>(this.url + '/', cat, { headers: this.getHeaders() });
+
+
    GetWorksById(id: object): Observable<Works> {
      return this.http.get<Works>(this.url + '/' + id,{ headers: this.getHeaders() });
    }

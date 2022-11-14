@@ -14,8 +14,16 @@
     <div class="form-group">
       <label  class="">Nom d'utilusateur:</label>
      <h1>{{storage.getUser().username}}</h1>
-     <label  class="">Date:</label>
-     <h1>{{maDate | date: 'longDate' }}</h1>
+
+     <!-- <h1>{{maDate | date: 'longDate' }}</h1> -->
+     <div class="form-group">
+     <label for="dateJour"  class="">Date:</label>
+      <input
+        type="date"
+        class="form-control"
+        formControlName="dateJour"
+      />
+    </div>
 
       <label for="description" class="">description:</label>
       <input
@@ -27,11 +35,21 @@
 
     <div class="form-group">
       <label for="nombreHeure" class="">Nombre de heur:</label>
-      <input
+      <!-- <input
         type="number"
         class="form-control"
         formControlName="nombreHeure"
-      />
+      /> -->
+      <select
+      class="form-control form-select"
+      formControlName="nombreHeure"
+    >
+    
+    <option value="4">4</option>
+    <option value="8">8</option>
+
+    </select>
+
     </div>
 
      <table class="mb-5">
@@ -57,7 +75,7 @@
     </table>
 
     <div class="form-group">
-      <button type="submit" class="btn btn-dark me-3 p-3" routerLink="/listworks">
+      <button type="submit" class="btn btn-dark me-3 p-3" >
         Enregistrer <i class="fa fa-database ms-2"></i>
       </button>
 

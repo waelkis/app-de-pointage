@@ -67,7 +67,7 @@ import { ProduitComponent } from './pages/produit/produit.component';
     MatDialogModule,
     DayPilotModule,
     Ng2SearchPipeModule,
-    
+
 
 
 
