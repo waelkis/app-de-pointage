@@ -1,4 +1,7 @@
 export class User {
+  toLocaleLowerCase() {
+    throw new Error('Method not implemented.');
+  }
   id!: object;
   username!: string;
   tel!: string;

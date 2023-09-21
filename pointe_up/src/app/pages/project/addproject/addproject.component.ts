@@ -32,7 +32,7 @@ export class AddprojectComponent implements OnInit {
       ]),
       description_projet: new FormControl('', [Validators.required]),
     });
-  }
+  }  
   get name_project() {
     return this.projectForm.get('name_project');
   }

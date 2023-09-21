@@ -28,7 +28,8 @@ export class AdduserComponent implements OnInit {
 
       email: this.fb.control(null, [Validators.required, Validators.email]),
        password: this.fb.control(null, [Validators.required]),
-      roles: this.fb.control(null, [Validators.required]),
+      // tel: this.fb.control(null, [Validators.required]),
+     // roles: this.fb.control(null, [Validators.required]),
 
 
     });

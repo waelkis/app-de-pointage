@@ -14,7 +14,7 @@ export class GuarduserGuard implements CanActivate {
 
       let isLoggedIn = this.authService.isLoggedIn();
       if (isLoggedIn == false) {
-        this.router.navigateByUrl('/user/login');
+        this.router.navigateByUrl('/login');
         return false;
       } else {
         return true;

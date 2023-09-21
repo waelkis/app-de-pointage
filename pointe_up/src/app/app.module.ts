@@ -24,6 +24,12 @@ import { AddworksComponent } from './pages/works/addworks/addworks.component';
 import { EditworksComponent } from './pages/works/editworks/editworks.component';
 import { ListworksComponent } from './pages/works/listworks/listworks.component';
 import { ProduitComponent } from './pages/produit/produit.component';
+import { DataTableComponent } from './data-table/data-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { ListWorksPipePipe } from './searchFilter/list-works-pipe.pipe';
+
 
 
 
@@ -50,6 +56,8 @@ import { ProduitComponent } from './pages/produit/produit.component';
     EditworksComponent,
     ListworksComponent,
     ProduitComponent,
+    DataTableComponent,
+    ListWorksPipePipe,
 
 
 
@@ -67,6 +75,10 @@ import { ProduitComponent } from './pages/produit/produit.component';
     MatDialogModule,
     DayPilotModule,
     Ng2SearchPipeModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+
 
 
 

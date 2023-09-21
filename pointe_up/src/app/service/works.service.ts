@@ -25,9 +25,10 @@ export class WorksService {
    }
 
    getWorks = (): Observable<Works[]> => {
+
      return this.http.get<Works[]>(this.url + '/',{ headers: this.getHeaders() });
    };
-   Addworks = (cat: Works): Observable<Works> => this.http.post<Works>(this.url + '/', cat, { headers: this.getHeaders() });
+   Addworks = (cat: Works): Observable<Works> => this.http.post<Works>(this.url + '/', cat , { headers: this.getHeaders() });
 
 
    GetWorksById(id: object): Observable<Works> {
@@ -39,4 +40,13 @@ export class WorksService {
    DeleteWorks(id: object): Observable<Works> {
      return this.http.delete<Works>(this.url + '/' + id,{ headers: this.getHeaders() });
    }
+   getpage(page:number,size:number): Observable<Works[]>{
+    return this.http.get<Works[]>(this.url+'/list?page='+page+'&size='+size,{ headers: this.getHeaders() });
+   }
+   getworksbyuser(id:object): Observable<Works[]>{
+    return this.http.get<Works[]>(this.url + '/listbyuser/' + id,{ headers: this.getHeaders() });
+   }
+   // Make call to the back end API to retrieve page of users
+  // users$ = (name: string = '', page: number = 0, size: number = 10): Observable<ApiResponse<Page>> =>
+  // this.http.get<ApiResponse<Page>>(`${this.serverUrl}/users?name=${name}&page=${page}&size=${size}`);
 }

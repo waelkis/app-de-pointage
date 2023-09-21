@@ -16,6 +16,7 @@ import { SidebareComponent } from './sidebare/sidebare.component';
 import { LoginuserComponent } from './user/loginuser/loginuser.component';
 
 const routes: Routes = [
+  {path:'login',component:LoginuserComponent},
   {path:'',component:SidebareComponent,canActivate:[GuarduserGuard],children :[
     {path:'',component:AddworksComponent},
     {path:'adduser',component:AdduserComponent},
@@ -33,7 +34,7 @@ const routes: Routes = [
   ]},
 
 
-  {path:'login',component:LoginuserComponent},
+
 
 
 ];

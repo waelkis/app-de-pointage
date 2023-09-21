@@ -53,7 +53,22 @@
           </span>
         </div>
 
-        <div class="mb-3">
+        <!-- <div class="mb-3">
+          <label class="form-label">Phone:</label>
+          <input type="text" formControlName="tel" class="form-control" />
+          <span
+            class="text-danger"
+            *ngIf="
+            newuserFormGroup.controls['tel'].touched &&
+            newuserFormGroup.controls['tel'].errors &&
+            newuserFormGroup.controls['tel'].errors!['required']
+            "
+          >
+          Phone is Required
+          </span>
+        </div> -->
+
+        <!-- <div class="mb-3">
           <label class="form-label">Role:</label>
           <input type="text" formControlName="roles" class="form-control" />
           <span
@@ -66,11 +81,11 @@
           >
             role is Required
           </span>
-        </div>
+        </div> -->
         <button
           class="btn btn-success"
           [disabled]="!newuserFormGroup.valid"
-          
+
         >
           Save
         </button>
